@@ -1,0 +1,23 @@
+<h2>Listing Clients </h2>
+<p>Total clients <%= @clients.size %></p>
+
+
+<%= link_to "Add Client", new_client_path %>
+
+<ol>
+   <% @clients.each do |client| %>
+   <li><%= client.name %>
+   <%=link_to "show",client_path(client)%>
+   </li>
+<%end%>
+</ol> 
+
+<% data = {} %>
+<% @clients.each do |client| %>
+<% data[client.name] = client.projects.size %>
+<% end %>
+
+<%= column_chart(data) %>
+<%= bar_chart(data) %> 
+
+

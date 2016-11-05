@@ -1,0 +1,68 @@
+<h3><%= @project.name %></h3>
+<b>Client : <%= link_to @project.client.try(:name) %></b>
+
+<b>Categories</b>
+<ul>
+<% @project.categories.each do |category|%>
+<li><%= category.name %></li>
+<%end%>
+</ul>
+
+<h3>Listing Tasks</h3>
+<ol>
+<% @project.tasks.each do |task|%>
+<li><%= task.title %> - <%=task.due_date%> - <%=task.is_completed%></li>
+<%end%>
+</ol>
+
+<h4>Overdue Tasks</h4>
+<ol>
+<%@project.overdue.each do |over|%>
+<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%></li>
+<%end%>
+</ol>
+
+<h3>Incomplete Projects</h3>
+<ol>
+<%@project.incomplete.each do |over|%>
+<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%></li>
+<%end%>
+</ol>
+
+<h3>completed Projects</h3>
+<ol>
+<%@project.complete.each do |over|%>
+<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%></li>
+<%end%>
+</ol>
+
+
+
+<h3>Add Task</h3>
+<%= form_for @task do |f| %>
+
+<%= f.label :title %><br/>
+<%= f.text_field :title %><br/>
+
+<%= f.label :due_date %><br/>
+<%= f.date_select :due_date %><br/>
+
+<%= f.label :is_completed %><br/>
+<%= f.check_box :is_completed %>
+
+<%= f.hidden_field :project_id, value: @project.id %><br/>
+<br/>
+
+<%= f.submit %>
+
+<% end %>
+
+
+
+
+
+<%= link_to "edit",edit_project_path(@project.id) %>
+
+<%= link_to "destroy" , project_path(@project.id),method: :delete, data:{confirm:"ARE you sure"} %>
+
+<%= link_to "Back", projects_path%>

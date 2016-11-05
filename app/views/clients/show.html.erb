@@ -1,0 +1,52 @@
+<h3><%= @client.name %></h3>
+
+<%= link_to "edit",edit_client_path(@client.id) %>
+<%= link_to "destroy" , client_path(@client.id),method: :delete, data:{confirm:"ARE you sure"} %>
+<%= link_to "Back",clients_path %>
+<h3>Projects Listing </h3>
+<ul>
+<% @client.projects.each do |project|%>
+<li><%= link_to project.name,project_path(project.id) %></li>
+<% end %>
+</ul>
+
+<h3>TOTAL PROJECT ARE</h3>
+<%=@client.projects.count%>
+
+
+
+<h3>NEW PROJECTS ARE</h3>
+<ol>
+<% @client.projects.where('status=?',"new").each do |project|%>
+	<li>
+		<%= link_to project.name,project_path(project.id) %>
+	</li>
+	<%end%>
+</ol>
+
+<h3>ONGOING PROJECTS ARE</h3>
+<ol>
+<% @ongoing_projects.each do |project|%>
+	<li>
+		<%= project.name %>
+	</li>
+	<%end%>
+</ol>
+
+<h3>COMPLETED PROJECTS ARE</h3>
+<ol>
+<% @completed_projects.each do |project|%>
+	<li>
+		<%= project.name %>
+	</li>
+	<%end%>
+</ol>
+
+<h3>Listing tasks</h3>
+<ol>
+<% @client.list_tasks.each do |task|%>
+<li><%= task.title %> - <%task.due_date %></li>
+<%end%>
+</ol>
+
+<%= link_to "Back", clients_path%>

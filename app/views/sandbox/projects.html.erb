@@ -1,0 +1,25 @@
+<h1>Sandbox#projects</h1>
+<p>Find me in app/views/sandbox/projects.html.erb</p>
+
+
+<h2>Total Products are</h2>
+<p><%=@allprojects.count%></p>
+
+
+<h3>Projects are</h3>
+<ol>
+<% @allprojects.each do |project|%>
+<li><%= project.name%></li>
+<% end %>
+</ol>
+
+
+<h3>Projects in this month</h3>
+<ol>
+<% @projects.each do |project|%>
+<li><%= project %></li>
+<%end%>
+</ol>
+
+
+

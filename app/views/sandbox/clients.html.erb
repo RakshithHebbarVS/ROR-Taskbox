@@ -1,0 +1,15 @@
+<h1>Sandbox#clients</h1>
+<p>Find me in app/views/sandbox/clients.html.erb</p>
+
+
+<h2>Total products are </h2>
+<p><%= @clients.count %>
+
+<h3>Products are</h3>
+<ol>
+<% @clients.each do |client|%>
+<li><%= client.name %></li>
+<% end %>
+</ol>
+
+

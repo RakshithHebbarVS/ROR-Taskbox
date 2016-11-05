@@ -1,0 +1,76 @@
+<h1>Sandbox#product</h1>
+<p>Find me in app/views/sandbox/product.html.erb</p>
+
+<h3>Products based on a given category are </h3>
+<ol>
+<% @prod_categories.each do |c| %>
+<li><%= c.name %></li>
+<% end %>
+</ol>
+
+<h3>Product based on a given price range are</h3>
+<ol>
+<% @pricerange.each do |p| %>
+<li><%= p.name %></li>
+<% end %>
+</ol>
+
+<h4>Product based on a given brand are </h4>
+<ol>
+<% @brand.each do |b| %>
+<li><%= b.name %></li>
+<% end %>
+</ol>
+
+
+<h5>Product based on certain size are </h5>
+<ol>
+<% @size.each do |s| %>
+<li><%= s.name %></li>
+<% end %>
+</ol>
+
+
+<h5>Product based on availabilty are </h5>
+<ol>
+<% @available.each do |a|%>
+<li><%= a.name %></li>
+<% end %>
+</ol>
+
+
+<h6>Product under 499 rs are </h6>
+<ol>
+<% @pricer.each do |m|%>
+<li><%= m.name %></li>
+<% end %>
+</ol>
+
+
+<h6>Product upto 1200 rs are </h6>
+<ol>
+<% @pricem.each do |m|%>
+<li><%= m.name %></li>
+<% end %>
+</ol>
+
+
+<h4>Products in descending order of price are </h4>
+<ol>
+<% @prp.each do |m|%>
+	<li><%= m.name  +	"#{m.price}" %></li>
+	<% end %>
+</ol>
+
+<h5>Products worth</h5>
+<p>Sum= <%= @prod %></p>
+
+<p>sum = <%= @prod_sum %></p>
+
+
+<h3>Listing products based on categories</h3>
+
+
+	
+
+
