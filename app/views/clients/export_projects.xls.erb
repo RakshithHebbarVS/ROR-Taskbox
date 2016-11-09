@@ -1,0 +1,23 @@
+<h2>Listing Projects</h2>
+
+<table border = "1">
+<thead>
+<tr>
+<th>SL.No</th>
+<th>Title</th>
+<th>Description</th>
+<th>Status</th>
+<th>ClientID</th>
+</tr>
+</thead>
+<tbody>
+	<% @client.projects.each do |project| %>
+		<tr>
+		<td><%= index + 1 %></td>
+		<td><%= project.title %></td>
+		<td><%= project.description %></td>
+		<td><%= project.status %></td>
+		<td><%= project.client_id %></td>
+		</tr>
+		<%end%>
+</tbody>

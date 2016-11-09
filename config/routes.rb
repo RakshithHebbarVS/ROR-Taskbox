@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+
+  get '/clients/export_projects'
+  get '/clients/export'
+  get '/tasks/mark_as_complete'
+  get '/tasks/mark_as_incomplete'
   resources :tasks
   devise_for :users
   resources :clients
