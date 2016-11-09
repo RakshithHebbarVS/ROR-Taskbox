@@ -3,6 +3,7 @@
 <%= link_to "edit",edit_client_path(@client.id) %>
 <%= link_to "destroy" , client_path(@client.id),method: :delete, data:{confirm:"ARE you sure"} %>
 <%= link_to "Back",clients_path %>
+<%= link_to "Export to excel",clients_export_projects_path(client_id: @client.id)%>
 <h3>Projects Listing </h3>
 <ul>
 <% @client.projects.each do |project|%>
