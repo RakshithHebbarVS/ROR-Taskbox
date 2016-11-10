@@ -4,6 +4,7 @@ gem 'chartkick'
 gem 'paranoia'
 gem 'devise'
 gem 'faker'
+gem 'rabl' #ruby api builder language , jbuilder , active  model serializers 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
