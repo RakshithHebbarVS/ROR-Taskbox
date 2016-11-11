@@ -1,0 +1,10 @@
+<h2>Listing announcements</h2>
+<p>Total announcements <%= @announcements.size %></p>
+<%= link_to "Add Announcement", new_announcement_path %>
+<ol>
+<% @announcements.each do |announcement|%>
+<li>
+<%= announcement.title%>--<%= announcement.body %>
+</li>
+<%end%>
+</ol>

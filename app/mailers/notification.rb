@@ -14,4 +14,11 @@ class Notification < ApplicationMailer
     @task = task
     mail to: "#{task.project.client.email}", subject: "#{task.title} has been opened"
   end
+
+  def on_create(announcement)
+    @announcement = announcement
+    emails = @announcement.user.clients.pluck(:email).join(",") 
+    mail to: "#{emails}" , subject: "#{announcement.title}"
+  end
+  
 end
