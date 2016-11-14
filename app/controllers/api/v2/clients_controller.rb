@@ -1,6 +1,5 @@
-#for UI
 module Api
-	module V1
+	module V2
 		class ClientsController < ApplicationController
 			def index
 				@clients = current_user.clients

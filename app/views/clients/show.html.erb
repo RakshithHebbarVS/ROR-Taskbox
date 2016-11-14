@@ -1,4 +1,4 @@
-<h3><%= @client.name %></h3>
+<h3><%= @client.name %> <%= @client.gender %></h3>
 
 <%= link_to "edit",edit_client_path(@client.id) %>
 <%= link_to "destroy" , client_path(@client.id),method: :delete, data:{confirm:"ARE you sure"} %>

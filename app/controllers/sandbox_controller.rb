@@ -21,4 +21,12 @@ class SandboxController < ApplicationController
      @allprojects = Project.all
      @projects = Project.where('start_date>?',Date.today.beginning_of_month)
   end
+
+  def get_jobs
+    if params[:technology]
+      technology = params[:technology]
+      location = params[:location]
+            @response = HTTParty.get("http://api.indeed.com/ads/apisearch?publisher=7277146494571922&q=#{technology}&l=#{location}&co=india&format=json&v=2")
+    end
+  end
 end
