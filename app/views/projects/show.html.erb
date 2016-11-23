@@ -27,10 +27,7 @@
 <%@project.incomplete.each do |over|%>
 <li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%>
 <%= link_to "Mark as complete",tasks_mark_as_complete_path(task_id: over.id)%>
-<%= form_for over do |f|%>
-<%= f.label :mark_as_complete %>
-<%= f.hidden_field :is_complete , value: true %>
-<%= f.submit "Mark"%>
+
 <%end%>
 
 </li>
