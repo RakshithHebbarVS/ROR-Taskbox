@@ -26,7 +26,7 @@ validate :check_proj_name , on: :create
 
 
 def overdue
-   self.tasks.where('is_completed =? AND due_date <?',false,'Date.today')
+   self.tasks.where('is_completed =? AND due_date <?',false, Date.today)
 end
 
 def incomplete
