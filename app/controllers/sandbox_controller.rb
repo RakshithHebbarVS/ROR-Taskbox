@@ -29,4 +29,15 @@ class SandboxController < ApplicationController
             @response = HTTParty.get("http://api.indeed.com/ads/apisearch?publisher=7277146494571922&q=#{technology}&l=#{location}&co=india&format=json&v=2")
     end
   end
+
+  
+  def restaurants
+        if params[:restaurant_id]
+          res_id = params[:restaurant_id]
+          @restaurant = HTTParty.get("https://developers.zomato.com/api/v2.1/restaurant?res_id=#{res_id}&apikey=b0dbcbe978a6937603658f84a74c78f1")
+          @reviews = HTTParty.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{res_id}&apikey=b0dbcbe978a6937603658f84a74c78f1")         
+         end 
+  end
+
+
 end

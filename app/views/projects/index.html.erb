@@ -10,6 +10,7 @@
 	<li>
 		<%=link_to project.name,project_path(project)%>
 		<%= project.name %> - <%= project.status %> -<%= project.start_date.strftime("%A, %d %B %Y ")%>
+		
 	</li>
 <%end%>
 </ul>

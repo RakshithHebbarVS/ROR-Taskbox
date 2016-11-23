@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  #resources :bookings
+  resources :rooms do 
+    resources :bookings
+  end
+
   get '/sandbox/get_jobs'
   
   namespace :api  , defaults: {format: "json"} do
@@ -25,7 +30,7 @@ Rails.application.routes.draw do
   resources :projects
 
   
-
+  get 'sandbox/restaurants'
   get 'sandbox/product'
 
   get 'sandbox/clients'

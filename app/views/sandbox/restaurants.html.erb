@@ -1,0 +1,41 @@
+
+<h3>Search Restaurant through ID</h3>
+
+<%= form_tag({url: sandbox_restaurants_path}, {method: :get}) do %>
+
+  <%= label_tag :restaurant_id %><br/>
+  <%= text_field_tag :restaurant_id %><br/>
+
+  <%= submit_tag "Search..." %>
+  <%end%>
+
+<% if !@restaurant.nil?  %>
+<% restaurant = @restaurant %>
+<br/>
+<h2>Restaurant Name : </h2>
+<%= restaurant["name"] %><br/>
+<%= link_to "visit", restaurant["url"] %><br/>
+<%= image_tag(restaurant["thumb"]) %><br/>
+<%= link_to "Events", restaurant["deeplink"] %><br/>
+<h5>User Reviews</h5>
+<p>Votes : <%= restaurant["user_rating"]["votes"]%></p>
+<p>Rating : <%= restaurant["user_rating"]["rating_text"] %></p>
+<p>Average Rating : <%= restaurant["user_rating"]["aggregate_rating"] %></p>
+<%end%>
+
+<% if !@reviews.nil? %>
+<% review = @reviews %>
+<h2>Reviews:</h2>
+<ol>
+<%  review["user_reviews"].each do |r| %>
+<li>
+<p>ratings : <%= r["review"]["rating"] %></p><br/>
+<p>Comment :<%= r["review"]["review_text"]%></p><br/>
+<p>Likes : <%= r["review"]["likes"] %></p><br/>
+<p>User Nmae :  <%= r["review"]["user"]["name"]%></p><br/>
+<%= image_tag(r["review"]["user"]["profile_image"]) %><br/>
+<p>Profile :<%= link_to "Profile", r["review"]["user"]["profile_url"] %> </p><br/>
+</li>
+<%end%>
+</ol>
+<%end%>
