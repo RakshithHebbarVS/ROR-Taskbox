@@ -8,8 +8,6 @@ gem 'faker'
 gem 'rabl' #ruby api builder language , jbuilder , active  model serializers 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
