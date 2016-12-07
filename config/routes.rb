@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
   get '/clients/export_projects'
   get '/clients/export'
+  get '/projects/export'
   get '/tasks/mark_as_complete'
   get '/tasks/mark_as_incomplete'
   resources :announcements

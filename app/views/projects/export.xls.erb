@@ -1,0 +1,25 @@
+<h2>Listing Projects</h2>
+
+<table border = "1">
+<thead>
+	<tr>
+  		<th>SL.NO</th>
+  		<th>Name</th>
+  		<th>Client</th>
+  		<th>Status</th>
+  		
+  	</tr>
+</thead>
+
+<tbody>
+	<% @projects.each_with_index do |project,index| %>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td><%= project.name %></td>
+		<td><%= project.client.name %></td>
+		<td><%= project.status %></td>
+		
+	</tr>
+	<% end %>
+</tbody>
+</table> 

@@ -1,27 +1,58 @@
-<h2>Listing Clients </h2>
-<p>Total clients <%= @clients.size %>
-<%= link_to "Export to excel",clients_export_path(format: "xls")%>
-</p>
+<div class = "row">
+	
+	<div class = "col-md-7">
+		<div class = "page-header">
+			<h2>Listing Clients 
+			<small>Total clients <%= @clients.size %></small>
+				<div class = "pull-right">
+					<%= link_to "Add Client", new_client_path, class: "btn btn-primary" %>
+					<%= link_to "Export to excel",clients_export_path(format: "xls"), class: "btn btn-info "%>
+				</div>	
+			</h2>
+			
+		</div>
+		
+		
+		<table class= "table table-striped">
+			<thead>
+				<th>#</th>
+				<th>name</th>
+				<th>company</th>
+				<th>email</th>
+				<th>mobile</th>
+				<th>Action</th>
+			</thead>
+				<tbody>
+					<tr>
+						<% count =1 %>
+						<% @clients.each do |client| %>
+						<td><%= count %></td>
+				   		<td><%= client.name %></td>
+				   		<td><%= client.company %></td>
+				   		<td><%= client.email %></td>
+				   		<td><%= client.mobile %></td>
+				   		<td><%=link_to "show",client_path(client)%></td>
+				   	</tr>
+				   	<% count += 1%>
+					<%end%>
+				</tbody>
+		</table>	 
+	</div>
+
+	<div class = "col-md-5">
+		<div class = "page-header">
+			<h2>Statistics</h2>
+		</div>
+		<% data = {} %>
+		<% @clients.each do |client| %>
+		<% data[client.name] = client.projects.size %>
+		<% end %>
+
+		<%= column_chart(data) %>
+		<%= bar_chart(data) %>
+	</div> 
 
 
-
-
-<%= link_to "Add Client", new_client_path %>
-
-<ol>
-   <% @clients.each do |client| %>
-   <li><%= client.name %>
-   <%=link_to "show",client_path(client)%>
-   </li>
-<%end%>
-</ol> 
-
-<% data = {} %>
-<% @clients.each do |client| %>
-<% data[client.name] = client.projects.size %>
-<% end %>
-
-<%= column_chart(data) %>
-<%= bar_chart(data) %> 
+</div>
 
 

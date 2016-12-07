@@ -48,6 +48,10 @@ class ProjectsController < ApplicationController
 		redirect_to projects_path,notice: "Successfully destroyed"
 	end
 
+	def export
+		@projects = Project.all 
+	end
+
 	
 	private
 
