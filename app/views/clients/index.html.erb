@@ -5,22 +5,27 @@
 			<h2>Listing Clients 
 			<small>Total clients <%= @clients.size %></small>
 				<div class = "pull-right">
-					<%= link_to "Add Client", new_client_path, class: "btn btn-primary" %>
-					<%= link_to "Export to excel",clients_export_path(format: "xls"), class: "btn btn-info "%>
+					<%# link_to "Add Client", new_client_path, class: "btn btn-primary" %>
+					<%= link_to new_client_path, class: "btn btn-primary" do %>
+						<i class = "glyphicon glyphicon-plus"></i>Add Client
+					<%end%> 
+					<%# link_to "Export to excel",clients_export_path(format: "xls"), class: "btn btn-info "%>
+					<%= link_to clients_export_path(format: "xls"), class: "btn btn-info " do %>
+						<i class = "glyphicon glyphicon-download-alt"></i>Download
+					<%end%>
 				</div>	
 			</h2>
 			
 		</div>
 		
 		
-		<table class= "table table-striped">
+		<table class= "table table-striped" id="clientsTable">
 			<thead>
 				<th>#</th>
 				<th>name</th>
 				<th>company</th>
 				<th>email</th>
-				<th>mobile</th>
-				<th>Action</th>
+				<th></th>
 			</thead>
 				<tbody>
 					<tr>
@@ -30,8 +35,18 @@
 				   		<td><%= client.name %></td>
 				   		<td><%= client.company %></td>
 				   		<td><%= client.email %></td>
-				   		<td><%= client.mobile %></td>
-				   		<td><%=link_to "show",client_path(client)%></td>
+				   		<td><%= link_to client_path(client),class: "btn btn-primary btn-sm" do%>
+							<i class="glyphicon glyphicon-folder-open"></i> Show
+							<%end%>
+						
+						<%= link_to edit_client_path(client),class: "btn btn-default btn-sm" do%>
+							<i class="glyphicon glyphicon-pencil"></i> Edit
+							<%end%>
+						
+						<%= link_to client_path(client.id),method: :delete, data:{confirm:"ARE you sure"} ,class: "btn btn-danger btn-sm" do%>
+							<i class="glyphicon glyphicon-trash"></i> Delete
+							<%end%>
+						</td>
 				   	</tr>
 				   	<% count += 1%>
 					<%end%>
@@ -43,14 +58,42 @@
 		<div class = "page-header">
 			<h2>Statistics</h2>
 		</div>
+
+
 		<% data = {} %>
 		<% @clients.each do |client| %>
 		<% data[client.name] = client.projects.size %>
 		<% end %>
+		
 
-		<%= column_chart(data) %>
-		<%= bar_chart(data) %>
-	</div> 
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#Pie" aria-controls="Pie" role="tab" data-toggle="tab">Pie</a></li>
+    <li role="presentation"><a href="#Bar" aria-controls="Bar" role="tab" data-toggle="tab">Bar</a></li>
+    <li role="presentation"><a href="#Column" aria-controls="Column" role="tab" data-toggle="tab">Column</a></li>
+   
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="Pie">
+    	<%= pie_chart(data) %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="Bar">
+    	<%= bar_chart(data) %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="Column">
+    	<%= column_chart(data) %>
+    </div>
+    
+  </div>
+
+
+		
+
+		
+		
+	
 
 
 </div>

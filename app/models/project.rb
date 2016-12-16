@@ -37,6 +37,17 @@ def complete
 	self.tasks.where('is_completed=?',true)
 end
 
+def calc_completed
+	(self.complete.size/self.tasks.size.to_f) *100
+end
+
+def calc_incompleted
+	(self.incomplete.size/self.tasks.size.to_f) *100
+end
+
+def calc_overdue
+	(self.overdue.size/self.tasks.size.to_f) *100
+end
 
 private
 

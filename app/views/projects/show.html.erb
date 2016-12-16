@@ -1,65 +1,113 @@
-<h3><%= @project.name %></h3>
-<b>Client : <%= link_to @project.client.try(:name) %></b>
+<div class="row">
+	<div class="col-md-8">
+		<h3><%= @project.name %></h3>
+		<b>Client : <%= link_to @project.client.try(:name) %></b>
 
-<b>Categories</b>
-<ul>
-<% @project.categories.each do |category|%>
-<li><%= category.name %></li>
-<%end%>
-</ul>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=@project.calc_completed %>%;">
+		    
+		  </div>
+		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=@project.calc_incompleted %>%;">
+		    
+		  </div>
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=@project.calc_overdue %>%;">
+		    
+		  </div>
+		</div>
 
-<h3>Listing Tasks</h3>
-<ol>
-<% @project.tasks.each do |task|%>
-<li><%= task.title %> - <%=task.due_date%> - <%=task.is_completed%></li>
-<%end%>
-</ol>
+		<b>Categories</b>
+		<ul>
+		<% @project.categories.each do |category|%>
+		<li><%= category.name %></li>
+		<%end%>
+		</ul>
 
-<h4>Overdue Tasks</h4>
-<ol>
-<%@project.overdue.each do |over|%>
-<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%></li>
-<%end%>
-</ol>
+		<h3>Listing Tasks</h3>
+		<ol>
+		<% @project.tasks.each do |task|%>
+		<li><%= task.title %> - <%=task.due_date%> - <%=task.is_completed%></li>
+		<%end%>
+		</ol>
 
-<h3>Incomplete Projects</h3>
-<ol>
-<%@project.incomplete.each do |over|%>
-<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%>
-<%= link_to "Mark as complete",tasks_mark_as_complete_path(task_id: over.id)%>
-</li>
-<%end%>
-</ol>
+		<h4>Overdue Tasks</h4>
+		<ol>
+		<%@project.overdue.each do |over|%>
+		<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%></li>
+		<%end%>
+		</ol>
 
-<h3>completed Projects</h3>
-<ol>
-<%@project.complete.each do |over|%>
-<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%>
-<%= link_to "Mark as incomplete", tasks_mark_as_incomplete_path(task_id: over.id)%>
-</li>
-<%end%>
-</ol>
+		<h3>Incomplete Projects</h3>
+		<ol>
+		<%@project.incomplete.each do |over|%>
+		<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%>
+		<%= link_to "Mark as complete",tasks_mark_as_complete_path(task_id: over.id)%>
+		</li>
+		<%end%>
+		</ol>
+
+		<h3>completed Projects</h3>
+		<ol>
+		<%@project.complete.each do |over|%>
+		<li><%= over.title %> - <%=over.due_date%> - <%=over.is_completed%>
+		<%= link_to "Mark as incomplete", tasks_mark_as_incomplete_path(task_id: over.id)%>
+		</li>
+		<%end%>
+		</ol>
+
+	</div>
+
+	<div class="col-md-4">
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addTask">
+  Add Task
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add task to <%= @project.name %></h4>
+      </div>
+      <div class="modal-body">
+        		<%= form_for @task do |f| %>
+        		<div class = "form-group">
+				<%= f.label :title %>
+				<%= f.text_field :title , class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :due_date %>
+					<%= f.text_field :due_date ,class: "form-control", id: "dueDate" %>
+				</div>
+
+
+				
+				<div class="checkbox">
+					<label>
+						<%= f.check_box :is_completed %>
+						<%= f.label :is_completed %> ?
+					</label>
+				</div>
+				<%= f.hidden_field :project_id, value: @project.id %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "submit", class: "btn btn-success"%>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+</div>
 
 
 
-<h3>Add Task</h3>
-<%= form_for @task do |f| %>
+<div id="calendar">
 
-<%= f.label :title %><br/>
-<%= f.text_field :title %><br/>
-
-<%= f.label :due_date %><br/>
-<%= f.date_select :due_date %><br/>
-
-<%= f.label :is_completed %><br/>
-<%= f.check_box :is_completed %>
-
-<%= f.hidden_field :project_id, value: @project.id %><br/>
-<br/>
-
-<%= f.submit %>
-
-<% end %>
+</div>
 
 
 
@@ -70,3 +118,5 @@
 <%= link_to "destroy" , project_path(@project.id),method: :delete, data:{confirm:"ARE you sure"} %>
 
 <%= link_to "Back", projects_path%>
+
+<%= render 'js'%>
